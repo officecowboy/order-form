@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Electronics Order Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+An electronics order form built with React and Typescript.
 
-In the project directory, you can run:
+Libraries Used:
+- [Material UI](https://mui.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Yup Object Schema Validation](https://github.com/jquense/yup)
+- [React Router](https://reactrouter.com/)
 
-### `npm start`
+I chose the above tech stack 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Next Steps
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Aiming for a 3-hour timeframe to completion, I prioritized the form's core functionality. At its current stage, the app successfully takes the user's inputs and validates them against the JSON schema. If there are any errors upon submission, the page returns the relevant error message(s). If correct, the page logs the submitted object to the console.
 
-### `npm test`
+With additional time, I would make the following improvements to the user experience:
+1. After pressing "Submit", a "Review Order" screen returns the user's inputs for final review for purchasing. If necessary, the user and go back and edit their form before final submission to the database. React Router is set up for this purpose, but I didn't have time to finish the follow-up screens.
+2. After final "Submit", a confirmation screen acknowledges the order was placed.
+3. Inline validation to correct user errors as they're filling out the form.
+4. Submission button only clickable when all fields have been filled in.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
