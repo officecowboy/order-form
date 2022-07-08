@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "../App.css";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -45,16 +45,16 @@ const schema = yup.object().shape({
   ).min(0).max(1).required("Required field - please enter a valid number."),
 }).required();
 
-export default function App() {
-  const { handleSubmit, control, formState: { errors }, reset } = useForm<IFormInputs>({
+export default function Form() {
+  const { handleSubmit, control, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(schema)
   });
   const onSubmit: SubmitHandler<IFormInputs> = data => console.log(data);
 
   return (
-    <div className="App">
-      <div className="intro">
-        <h2>Order Form</h2>
+    <div className="form-container">
+      <div className="form-intro">
+        <h1>Order Form</h1>
         <p>Please enter the details of your electronic component.</p>
       </div>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -85,7 +85,7 @@ export default function App() {
             <TextField
               {...field}
               error={!!errors.nominal_capacitance}
-              helperText={errors.nominal_capacitance?.message || "Capacitance measured in micro-Farads (μF)."}
+              helperText={errors.nominal_capacitance?.message || "Value measured in micro-Farads (μF)."}
               id="outlined-basic"
               label="Nominal Capacitance"
               variant="outlined"
@@ -143,7 +143,7 @@ export default function App() {
               variant="outlined"
             />}
         />
-        <Button type="submit" variant="contained">Submit</Button>
+        <Button className="form-button" type="submit" variant="contained">Submit</Button>
       </form>
     </div>
   );
