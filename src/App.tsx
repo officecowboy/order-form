@@ -22,7 +22,6 @@ setLocale({
   number: {
     min: "Value must be greater than or equal to ${min}.",
     max: "Value must be less than or equal to ${max}.",
-    positive: "Value must be a postive number.",
     integer: "Value must be an integer."
   },
 });
@@ -31,16 +30,16 @@ const schema = yup.object().shape({
   type: yup.string().required("Required field."),
   nominal_capacitance: yup.number().transform(value =>
     isNaN(value) ? undefined : value
-  ).positive().required("Required field - please enter a valid number."),
+  ).required("Required field - please enter a valid number."),
   working_voltage: yup.number().transform(value =>
     isNaN(value) ? undefined : value
-  ).positive().integer().required("Required field - please enter a valid number."),
+  ).integer().required("Required field - please enter a valid number."),
   tolerance: yup.number().transform(value =>
     isNaN(value) ? undefined : value
   ).min(0).max(1).required("Required field - please enter a valid number."),
   working_temperature: yup.number().transform(value =>
     isNaN(value) ? undefined : value
-  ).required("Required field - please enter a valid number."),
+  ).integer().required("Required field - please enter a valid number."),
   temperature_coefficient: yup.number().transform(value =>
     isNaN(value) ? undefined : value
   ).min(0).max(1).required("Required field - please enter a valid number."),
@@ -54,6 +53,10 @@ export default function App() {
 
   return (
     <div className="App">
+      <div className="intro">
+        <h2>Order Form</h2>
+        <p>Please enter the details of your electronic component.</p>
+      </div>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
 
         <Controller
@@ -82,7 +85,7 @@ export default function App() {
             <TextField
               {...field}
               error={!!errors.nominal_capacitance}
-              helperText={errors.nominal_capacitance?.message}
+              helperText={errors.nominal_capacitance?.message || "Capacitance measured in micro-Farads (μF)."}
               id="outlined-basic"
               label="Nominal Capacitance"
               variant="outlined"
@@ -97,7 +100,7 @@ export default function App() {
               error={!!errors.working_voltage}
               helperText={errors.working_voltage?.message}
               id="outlined-basic"
-              label="Working Voltage"
+              label="Working Voltage (DC)"
               variant="outlined"
             />}
         />
@@ -108,7 +111,7 @@ export default function App() {
             <TextField
               {...field}
               error={!!errors.tolerance}
-              helperText={errors.tolerance?.message}
+              helperText={errors.tolerance?.message || "Enter a decimal value between 0 and 1."}
               id="outlined-basic"
               label="Tolerance"
               variant="outlined"
@@ -134,7 +137,7 @@ export default function App() {
             <TextField
               {...field}
               error={!!errors.temperature_coefficient}
-              helperText={errors.temperature_coefficient?.message}
+              helperText={errors.temperature_coefficient?.message || "Enter a decimal value between 0 and 1."}
               id="outlined-basic"
               label="Temperature Coefficient"
               variant="outlined"
