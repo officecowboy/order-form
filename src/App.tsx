@@ -1,8 +1,9 @@
 import React from "react";
-import './App.css';
+import "./App.css";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { setLocale } from "yup";
 import { Button, MenuItem, TextField } from "@mui/material";
 
 interface IFormInputs {
@@ -14,13 +15,35 @@ interface IFormInputs {
   temperature_coefficient: number;
 }
 
-const schema = yup.object({
-  type: yup.string().required(),
-  nominal_capacitance: yup.number().positive().required(),
-  working_voltage: yup.number().positive().integer().required(),
-  tolerance: yup.number().min(0).max(1).required(),
-  working_temperature: yup.number().required(),
-  temperature_coefficient: yup.number().min(0).max(1).required(),
+setLocale({
+  mixed: {
+    default: "Invalid field.",
+  },
+  number: {
+    min: "Value must be greater than or equal to ${min}.",
+    max: "Value must be less than or equal to ${max}.",
+    positive: "Value must be a postive number.",
+    integer: "Value must be an integer."
+  },
+});
+
+const schema = yup.object().shape({
+  type: yup.string().required("Required field."),
+  nominal_capacitance: yup.number().transform(value =>
+    isNaN(value) ? undefined : value
+  ).positive().required("Required field - please enter a valid number."),
+  working_voltage: yup.number().transform(value =>
+    isNaN(value) ? undefined : value
+  ).positive().integer().required("Required field - please enter a valid number."),
+  tolerance: yup.number().transform(value =>
+    isNaN(value) ? undefined : value
+  ).min(0).max(1).required("Required field - please enter a valid number."),
+  working_temperature: yup.number().transform(value =>
+    isNaN(value) ? undefined : value
+  ).required("Required field - please enter a valid number."),
+  temperature_coefficient: yup.number().transform(value =>
+    isNaN(value) ? undefined : value
+  ).min(0).max(1).required("Required field - please enter a valid number."),
 }).required();
 
 export default function App() {
@@ -72,7 +95,7 @@ export default function App() {
             <TextField
               {...field}
               error={!!errors.working_voltage}
-              helperText={errors.nominal_capacitance?.message}
+              helperText={errors.working_voltage?.message}
               id="outlined-basic"
               label="Working Voltage"
               variant="outlined"
