@@ -2,9 +2,9 @@
 
 ## Description
 
-An electronics order form built with React and TypeScript.
+An electronics order form built with TypeScript and React.
 
-Libraries Used:
+Additional libraries Used:
 - [Material UI](https://mui.com/)
 - [React Hook Form](https://react-hook-form.com/)
 - [Yup](https://github.com/jquense/yup) (Object Schema Validation)
