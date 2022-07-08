@@ -24,7 +24,7 @@ const schema = yup.object({
 }).required();
 
 export default function App() {
-  const { handleSubmit, control, reset } = useForm<IFormInputs>({
+  const { handleSubmit, control, formState: { errors }, reset } = useForm<IFormInputs>({
     resolver: yupResolver(schema)
   });
   const onSubmit: SubmitHandler<IFormInputs> = data => console.log(data);
@@ -39,12 +39,13 @@ export default function App() {
           defaultValue={""}
           render={({ field }) =>
             <TextField
+              {...field}
+              error={!!errors.type}
               id="outlined-basic"
               label="Component Type"
               variant="outlined"
               select
-              className="TextField"
-              {...field}
+              helperText={errors.type && "Required field."}
             >
               <MenuItem value={"capacitor"}>Capacitor</MenuItem>
               <MenuItem value={"resistor"}>Resistor</MenuItem>
@@ -57,6 +58,8 @@ export default function App() {
           render={({ field }) =>
             <TextField
               {...field}
+              error={!!errors.nominal_capacitance}
+              helperText={errors.nominal_capacitance?.message}
               id="outlined-basic"
               label="Nominal Capacitance"
               variant="outlined"
@@ -68,6 +71,8 @@ export default function App() {
           render={({ field }) =>
             <TextField
               {...field}
+              error={!!errors.working_voltage}
+              helperText={errors.nominal_capacitance?.message}
               id="outlined-basic"
               label="Working Voltage"
               variant="outlined"
@@ -79,6 +84,8 @@ export default function App() {
           render={({ field }) =>
             <TextField
               {...field}
+              error={!!errors.tolerance}
+              helperText={errors.tolerance?.message}
               id="outlined-basic"
               label="Tolerance"
               variant="outlined"
@@ -90,8 +97,10 @@ export default function App() {
           render={({ field }) =>
             <TextField
               {...field}
+              error={!!errors.working_temperature}
+              helperText={errors.working_temperature?.message}
               id="outlined-basic"
-              label="Working Temperature"
+              label="Working Temperature (ºC)"
               variant="outlined"
             />}
         />
@@ -101,6 +110,8 @@ export default function App() {
           render={({ field }) =>
             <TextField
               {...field}
+              error={!!errors.temperature_coefficient}
+              helperText={errors.temperature_coefficient?.message}
               id="outlined-basic"
               label="Temperature Coefficient"
               variant="outlined"
